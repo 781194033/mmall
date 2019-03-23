@@ -7,6 +7,7 @@ import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
+import com.mmall.vo.StatisticVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -199,6 +200,20 @@ public class UserServiceImpl implements IUserService {
             return ServerResponse.createBySuccess();
         }
         return ServerResponse.createByError();
+    }
+
+    public ServerResponse<StatisticVo> getBaseCount() {
+        int userCount = userMapper.getUserCount();
+        int orderCount = userMapper.getOrderCount();
+        int productCount = userMapper.getProductCount();
+
+        StatisticVo statisticVo = new StatisticVo();
+
+        statisticVo.setUserCount(userCount);
+        statisticVo.setProductCount(productCount);
+        statisticVo.setOrderCount(orderCount);
+
+        return ServerResponse.createBySuccess(statisticVo);
     }
 
 

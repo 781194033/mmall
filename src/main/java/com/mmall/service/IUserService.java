@@ -2,6 +2,7 @@ package com.mmall.service;
 
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
+import com.mmall.vo.StatisticVo;
 
 public interface IUserService {
 
@@ -24,4 +25,6 @@ public interface IUserService {
     ServerResponse<User> getInformation(Integer userId);
 
     ServerResponse checkAdminRole(User user);
+
+    ServerResponse<StatisticVo> getBaseCount();
 }

@@ -210,7 +210,17 @@
     where email = #{email}
     and id != #{userId}
   </select>
+  <select id="getUserCount" resultType="int">
+    select count(1) from mmall_user
+  </select>
 
+  <select id="getProductCount" resultType="int">
+    select count(1) from mmall_product
+  </select>
+
+  <select id="getOrderCount" resultType="int">
+    select count(1) from mmall_order
+  </select>
 
 
 
