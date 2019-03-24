@@ -1,5 +1,7 @@
 package com.mmall.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
 import com.mmall.common.TokenCache;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -215,6 +218,15 @@ public class UserServiceImpl implements IUserService {
 
         return ServerResponse.createBySuccess(statisticVo);
     }
+
+    public ServerResponse<PageInfo> getUserList(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> userList = userMapper.selectUserList();
+        PageInfo pageInfo = new PageInfo(userList);
+        pageInfo.setList(userList);
+        return ServerResponse.createBySuccess(pageInfo);
+    }
+
 
 
 

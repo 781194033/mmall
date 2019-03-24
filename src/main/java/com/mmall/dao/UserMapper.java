@@ -3,6 +3,8 @@ package com.mmall.dao;
 import com.mmall.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -38,4 +40,5 @@ public interface UserMapper {
 
     int getProductCount();
 
+    List<User> selectUserList();
 }

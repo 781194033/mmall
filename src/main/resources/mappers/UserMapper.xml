@@ -222,6 +222,11 @@
     select count(1) from mmall_order
   </select>
 
+  <select id="selectUserList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_user
+  </select>
 
 
 

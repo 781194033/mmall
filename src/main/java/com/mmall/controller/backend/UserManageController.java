@@ -1,5 +1,6 @@
 package com.mmall.controller.backend;
 
+import com.github.pagehelper.PageInfo;
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -42,5 +44,15 @@ public class UserManageController {
     public ServerResponse<StatisticVo> getBaseCount(){
         return iUserService.getBaseCount();
     }
+
+
+    @RequestMapping(value="user/list.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<PageInfo> list(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
+                                         @RequestParam(value = "pageSize",defaultValue = "10") int pageSize
+    ){
+        return iUserService.getUserList(pageNum,pageSize);
+    }
+
 
 }
